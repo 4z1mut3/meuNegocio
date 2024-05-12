@@ -1,0 +1,5 @@
+{
+  "Connection": {
+    "ConnectionString":"Server=localhost;Database=est_00;Uid=root;Pwd=;"
+  }
+}
