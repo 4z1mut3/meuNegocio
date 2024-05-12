@@ -31,8 +31,16 @@ namespace App.Controllers
             };            
             return View();
         }
-      
-
+        public IActionResult Create()
+        {            
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Create(User usuario)
+        {
+            _userRepository.CreateUser(usuario);
+            return View();
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

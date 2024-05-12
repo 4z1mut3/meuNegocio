@@ -11,8 +11,10 @@ namespace Repository.Implementations
 {
     public class UserRepository : IUserRepository
     {
-        private const string Sql = "SELECT * FROM User where IdUsuario =  @id";
-        
+        private const string getById = "SELECT * FROM User where IdUsuario =  @id";
+        private const string insert = @"INSERT INTO est_00.`user`(Name, Password)
+                                        VALUES(@Name, @Password);";
+
 
         public UserRepository()
         {        
@@ -28,10 +30,28 @@ namespace Repository.Implementations
             using (IDbConnection dbConnection = new MySqlConnection("Server=localhost;Database=est_00;Uid=root;Pwd=;"))
             {
                 dbConnection.Open();
-                usr = dbConnection.QueryFirst<User>(Sql, new { id = 1 });
+                usr = dbConnection.QueryFirst<User>(getById, new { id = 1 });
             }
 
             return usr;
+        }
+
+        public bool CreateUser(User usuario) 
+        {
+            int isSuccess = 0;
+            using (IDbConnection dbConnection = new MySqlConnection("Server=localhost;Database=est_00;Uid=root;Pwd=;"))
+            {
+                dbConnection.Open();
+                isSuccess = dbConnection.Execute(insert, new { Name = usuario.Name, Password=usuario.Password }) ;
+            }
+
+            if (isSuccess > 0)
+            {
+                return true;
+            }
+            else {
+                return false;
+            }
         }
     }
 }

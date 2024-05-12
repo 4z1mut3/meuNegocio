@@ -1,0 +1,23 @@
+﻿@using Models
+@{
+    Layout = "../Shared/_Layout.cshtml";
+    ViewData["Title"] = "Criar Usuario";    
+}
+
+<div class="card col-md-5 align-items-center ">
+   
+@using (Html.BeginForm())
+{
+        <br />
+    <div class="">
+            <input type="text" id="Name" name="Name" class="form-text text-muted" placeholder="Nome">
+    </div>
+    <div>
+            <input type="text" id="Password" name="Password" class="form-text text-muted" placeholder="Senha">
+    </div>
+    <br />
+        <input type="submit" class="btn btn-success" method="post" action="User/Create" value="Criar">
+    
+}
+    <br />
+    </div>

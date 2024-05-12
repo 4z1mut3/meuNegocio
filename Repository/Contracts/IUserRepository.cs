@@ -10,5 +10,6 @@ namespace Repository.Contracts
     public interface IUserRepository
     {
         public User GetUser();
+        public bool CreateUser(User usuario);
     }
 }
