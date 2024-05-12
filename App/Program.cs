@@ -1,3 +1,4 @@
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Repository.Contracts;
 using Repository.Implementations;
 
@@ -5,7 +6,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddSingleton<IUserRepository,UserRepository>();
+
+
+builder.Services.AddTransient<IUserRepository, UserRepository>();
 
 
 var app = builder.Build();
